@@ -18,21 +18,21 @@
 #include <stdlib.h>
 #include <iostream>
 #include <string>
-#include <chrono>
-#include <ctime>
+#include <sstream>
 using namespace std;
 
 class ClockWork{
 	private:
-		int timescale[3][2] = {{0, 0}, {0, 0}, {0, 0}};
+		int timescale[3] = {0, 0, 0};
 	public:
 		void main(){
-			// Main function, initialize the time to random
+				// Main function, initialize the time to random
 			printMenu();
 		}
 		void printClock(string time_twelve_hour, string time_twentyfour_hour){
 			// This Function prints the clock into the terminal
 			cout << "***************"  << "  " << "***************" << endl;
+			cout << "* 12 Hour Clock *" << " " << "* 24 Hour Clock *" << endl;
 			cout << "* " << time_twelve_hour << " *" << "  * " << time_twentyfour_hour << " *" << endl;
 			cout << "***************"  << "  " << "***************" << endl;        
 		}
@@ -45,18 +45,16 @@ class ClockWork{
 			cout << "* 4 - Exit Projram   *" << endl;
 			cout << "**********************" << endl;       
 		}
-		
+
 		void simpleTimeHandler(int dur){
 			// Check the hour second for timing
-			if (timescale[dur][1] == 9 && timescale[dur][0] == 5){
-                                fill(begin(timescale[dur]), end(timescale[dur]), 0);
-                                addHour();
-                        } else if (timescale[dur][1] == 9){
-                                timescale[dur][0] = timescale[dur][0] + 1;
-                                timescale[dur][1] = 0;
-                        } else {
-                                timescale[dur][1] += 1;
-                        }
+			if (timescale[dur] > 58){
+				timescale[dur] = 0;
+				addHour();
+			}
+			else {
+				timescale[dur] += 1;
+			}
 
 		}
 		void addSecond(){
@@ -71,54 +69,72 @@ class ClockWork{
 
 		void addHour(){
 			// Add one hour to clock
-			if (timescale[0][1] == 2 && timescale[0][1] == 3){
-                                fill(begin(timescale[0]), end(timescale[0]), 0);
-                        } else if (timescale[0][1] == 9){
-                                timescale[0][0] = timescale[0][0] + 1;
-                                timescale[0][1] = 0;
-                        } else {
-                                timescale[0][1] += 1;
-                        }
+			if (timescale[0] > 23){
+				timescale[0] = 0;
+			} else {
+				timescale[0] += 1;
+			}
 		}
+		string arryString(){
+			int is_pm = 0;
+			//time_stamp_twelve << fixed << setprecision(2);
+			//time_stamp_twentyfour << fixed << setprecision(2);
+			stringstream time_stamp_twelve;
+			std::string s = stream.str();
+			if(timescale[0] > 12){
+				time_stamp_twelve << fixed << setprecision(2) <<  timescale[0] - 12;
+				is_pm = 1;
+			}
+			time_stamp_twelve << ":" << timescale[1] << ":" << timescale[2];
+			if (is_pm == 1){
+				time_stamp_twelve << "PM";
+			} else {
+				time_stamp_twelve << "AM";
+			}
+			return time_stamp_twelve;
+
+		}
+		int clockHandle() {
+			// This is the clock handler to handle the menu and the clock
+			printMenu();
+
+			// Save making a choice
+			int choice = 4;
+			while(true) {
+			// Running while loop to handle menu selection
+				cin >> choice;
+				switch(choice){
+				case 1:
+					// Take choice 1
+					addHour();
+					break;
+				case 2:
+					// Take choice 2
+					addMinute();
+					break;
+				case 3:
+					// Take choice 3
+					addSecond();
+					break;
+				case 4:
+					// Terminate
+					exit(0);
+				default:
+					cout << "Invalid input" << endl;
+				}
+				tuple<string, string> time_stamp;
+				time_stamp = arryString()
+				printClock(time_stamp);
+			}
+			return 0;
+		}
+
 };
-
-int clockHandle(ClockWork my_clock) {
-	// This is the clock handler to handle the menu and the clock
-	my_clock.printMenu();
-
-	// Save making a choice
-	int choice = 4;
-	while(true) {
-		// Running while loop to handle menu selection
-		cin >> choice;
-		switch(choice){
-			case 1:
-				// Take choice 1
-				my_clock.addHour();
-				break;
-			case 2:
-				// Take choice 2
-				my_clock.addMinute();
-				break;
-			case 3:
-				// Take choice 3
-				my_clock.addSecond();
-				break;
-			case 4:
-				// Terminate
-				exit(0);
-			default:
-				cout << "Invalid input" << endl;
-		}
-		my_clock.printClock();
-	}
-	return 0;
-}
 
 int main(){
 	//Main function that runs the clock system
 	ClockWork my_clock = ClockWork();
-	clockHandle(my_clock);
+	my_clock.clockHandle();
 	return 0;
 }
 
