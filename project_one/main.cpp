@@ -20,6 +20,7 @@
 #include <random>
 #include <format>
 #include <iostream>
+#include <iomanip>
 using namespace std;
 
 class ClockWork{
@@ -81,7 +82,7 @@ class ClockWork{
 
 		void addHour(){
 			// Add one hour to clock
-			if (timescale[0] > 23){
+			if (timescale[0] >= 23){
 				timescale[0] = 0;
 			} else {
 				timescale[0] += 1;
@@ -90,15 +91,22 @@ class ClockWork{
 		string arrayString(bool twenty_four = false){
 			// Build strings for clock to print
 			if (twenty_four){
-				return format("{}:{}:{}", timescale[0], timescale[1], timescale[2]);
+				return format("{0:02d}:{1:02d}:{2:02d}", timescale[0], timescale[1], timescale[2]);
 			}
+
+			// Build 12 hr clock
 			string is_pm = "AM";
-			int new_hour;
+			int new_hour = 0;
 			if(timescale[0] > 12){
 				new_hour = timescale[0] - 12;
+				cout << timescale[0];
 				is_pm = "PM";
 			}
-			return format("{}:{}:{} {}", new_hour, timescale[1], timescale[2], is_pm);
+			if (new_hour > 24) {
+				cout << new_hour;
+				exit(0);
+			}
+			return format("{0:02d}:{1:02d}:{2:02d} {3}", new_hour, timescale[1], timescale[2], is_pm);
 
 		}
 		int clockHandle() {
@@ -110,8 +118,8 @@ class ClockWork{
 				arrayString(true));
 
 			// Save making a choice
-			int choice = 4;
-			while(true) {
+			int choice;
+			while(choice != 4) {
 				// Running while loop to handle menu selection
 				cin >> choice;
 				switch(choice){
