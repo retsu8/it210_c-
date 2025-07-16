@@ -16,18 +16,30 @@
  * =====================================================================================
  */
 #include <stdlib.h>
-#include <iostream>
 #include <string>
+#include <random>
 #include <format>
+#include <iostream>
 using namespace std;
 
 class ClockWork{
 	private:
-		int timescale[3] = {0, 0, 0};
+		int timescale[3] = {0};
 	public:
-		void main(){
-			// Main function, initialize the time to random
-			printMenu();
+		int randomly(int i, int j){
+			// get a random seed from the hardware
+		    	random_device rd;
+		    	// generate the random id here
+		    	mt19937 gen(rd());
+		    	// Set the range here
+		    	uniform_int_distribution<> distr(i, j);
+		    	return distr(gen);
+		}
+		void fillClock(){
+			// Fill the clock with a random time
+			timescale[2] = randomly(0, 59);
+			timescale[1] = randomly(0, 59);
+			timescale[0] = randomly(0, 23);
 		}
 		void printClock(string time_twelve_hour, string time_twentyfour_hour){
 			// This Function prints the clock into the terminal
@@ -76,23 +88,26 @@ class ClockWork{
 			}
 		}
 		string arrayString(bool twenty_four = false){
+			// Build strings for clock to print
 			if (twenty_four){
 				return format("{}:{}:{}", timescale[0], timescale[1], timescale[2]);
 			}
 			string is_pm = "AM";
-			string time_stamp_twelve;
 			int new_hour;
 			if(timescale[0] > 12){
 				new_hour = timescale[0] - 12;
 				is_pm = "PM";
 			}
-			time_stamp_twelve = format("{}:{}:{} {}", new_hour, timescale[1], timescale[2], is_pm);
-			return time_stamp_twelve;
+			return format("{}:{}:{} {}", new_hour, timescale[1], timescale[2], is_pm);
 
 		}
 		int clockHandle() {
 			// This is the clock handler to handle the menu and the clock
 			printMenu();
+			fillClock();
+			printClock(
+				arrayString(), 
+				arrayString(true));
 
 			// Save making a choice
 			int choice = 4;
@@ -118,7 +133,6 @@ class ClockWork{
 					default:
 						cout << "Invalid input" << endl;
 				}
-				tuple<string, string> time_stamp;
 				printClock(arrayString(), arrayString(true));
 			}
 			return 0;
