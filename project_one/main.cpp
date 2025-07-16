@@ -44,10 +44,10 @@ class ClockWork{
 		}
 		void printClock(string time_twelve_hour, string time_twentyfour_hour){
 			// This Function prints the clock into the terminal
-			cout << "***************"  << "  " << "***************" << endl;
-			cout << "* 12 Hour Clock *" << " " << "* 24 Hour Clock *" << endl;
-			cout << "* " << time_twelve_hour << " *" << "  * " << time_twentyfour_hour << " *" << endl;
-			cout << "***************"  << "  " << "***************" << endl;        
+			cout << "*****************"  << "  " << "*****************" << endl;
+			cout << "* 12 Hour Clock *" << "  " << "* 24 Hour Clock *" << endl;
+			cout << "*  " << time_twelve_hour << "  *" << "  *   " << time_twentyfour_hour << "    *" << endl;
+			cout << "*****************"  << "  " << "*****************" << endl;        
 		}
 		void printMenu(){
 			// Print the menu for the clcok
@@ -99,12 +99,7 @@ class ClockWork{
 			int new_hour = 0;
 			if(timescale[0] > 12){
 				new_hour = timescale[0] - 12;
-				cout << timescale[0];
 				is_pm = "PM";
-			}
-			if (new_hour > 24) {
-				cout << new_hour;
-				exit(0);
 			}
 			return format("{0:02d}:{1:02d}:{2:02d} {3}", new_hour, timescale[1], timescale[2], is_pm);
 
