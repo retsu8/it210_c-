@@ -12,6 +12,7 @@
  *
  *         Author:  William Paddock, 
  *   Organization:  SNHU CS210 Project 1 Clocks
+ *   Notes: Clock display is based on mono font
  *
  * =====================================================================================
  */
@@ -25,6 +26,7 @@ using namespace std;
 
 class ClockWork{
 	private:
+		// Make the clocks times here
 		int timescale[3] = {0};
 	public:
 		int randomly(int i, int j){
@@ -96,10 +98,12 @@ class ClockWork{
 
 			// Build 12 hr clock
 			string is_pm = "AM";
-			int new_hour = 0;
+			int new_hour = timescale[0];
 			if(timescale[0] > 12){
 				new_hour = timescale[0] - 12;
 				is_pm = "PM";
+			} else if (timescale[0] == 0){
+				new_hour = 12;
 			}
 			return format("{0:02d}:{1:02d}:{2:02d} {3}", new_hour, timescale[1], timescale[2], is_pm);
 
@@ -136,7 +140,9 @@ class ClockWork{
 					default:
 						cout << "Invalid input" << endl;
 				}
+				// Print out the new clock information and print the menu
 				printClock(arrayString(), arrayString(true));
+				printMenu();
 			}
 			return 0;
 		}

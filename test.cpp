@@ -1,16 +1,23 @@
 #include <iostream>
-#include <string>
+#include <vector>
 using namespace std;
 
 int main() {
-   string str1;
-   string str2;
+   const int NUM_ELEMENTS = 4;
+   vector<int> userVals(NUM_ELEMENTS);
+   unsigned int i;
    
-   getline(cin, str1);
-   getline(cin, str2);
+   userVals.at(0) = -2;
+   userVals.at(1) = 4;
+   userVals.at(2) = -5;
+   userVals.at(3) = 7;
    
-   cout << str1 << endl;
-   cout << str2 << endl;
- 
+   for (i = 0; i < userVals.size(); ++i) {
+      if (userVals.at(i) < 0) {
+         userVals.at(i) = -1 * userVals.at(i);
+      }
+      cout << userVals.at(i) << endl;
+   }
+   
    return 0;
 }
