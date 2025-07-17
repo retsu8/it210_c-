@@ -18,7 +18,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include <string>
-#include <sstream>
+#include <format>
 using namespace std;
 
 class ClockWork{
@@ -26,7 +26,7 @@ class ClockWork{
 		int timescale[3] = {0, 0, 0};
 	public:
 		void main(){
-				// Main function, initialize the time to random
+			// Main function, initialize the time to random
 			printMenu();
 		}
 		void printClock(string time_twelve_hour, string time_twentyfour_hour){
@@ -75,22 +75,18 @@ class ClockWork{
 				timescale[0] += 1;
 			}
 		}
-		string arryString(){
-			int is_pm = 0;
-			//time_stamp_twelve << fixed << setprecision(2);
-			//time_stamp_twentyfour << fixed << setprecision(2);
-			stringstream time_stamp_twelve;
-			std::string s = stream.str();
+		string arrayString(bool twenty_four = false){
+			if (twenty_four){
+				return format("{}:{}:{}", timescale[0], timescale[1], timescale[2]);
+			}
+			string is_pm = "AM";
+			string time_stamp_twelve;
+			int new_hour;
 			if(timescale[0] > 12){
-				time_stamp_twelve << fixed << setprecision(2) <<  timescale[0] - 12;
-				is_pm = 1;
+				new_hour = timescale[0] - 12;
+				is_pm = "PM";
 			}
-			time_stamp_twelve << ":" << timescale[1] << ":" << timescale[2];
-			if (is_pm == 1){
-				time_stamp_twelve << "PM";
-			} else {
-				time_stamp_twelve << "AM";
-			}
+			time_stamp_twelve = format("{}:{}:{} {}", new_hour, timescale[1], timescale[2], is_pm);
 			return time_stamp_twelve;
 
 		}
@@ -101,30 +97,29 @@ class ClockWork{
 			// Save making a choice
 			int choice = 4;
 			while(true) {
-			// Running while loop to handle menu selection
+				// Running while loop to handle menu selection
 				cin >> choice;
 				switch(choice){
-				case 1:
-					// Take choice 1
-					addHour();
-					break;
-				case 2:
-					// Take choice 2
-					addMinute();
-					break;
-				case 3:
-					// Take choice 3
-					addSecond();
-					break;
-				case 4:
-					// Terminate
-					exit(0);
-				default:
-					cout << "Invalid input" << endl;
+					case 1:
+						// Take choice 1
+						addHour();
+						break;
+					case 2:
+						// Take choice 2
+						addMinute();
+						break;
+					case 3:
+						// Take choice 3
+						addSecond();
+						break;
+					case 4:
+						// Terminate
+						exit(0);
+					default:
+						cout << "Invalid input" << endl;
 				}
 				tuple<string, string> time_stamp;
-				time_stamp = arryString()
-				printClock(time_stamp);
+				printClock(arrayString(), arrayString(true));
 			}
 			return 0;
 		}
