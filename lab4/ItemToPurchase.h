@@ -1,4 +1,4 @@
-/ ********************
+/********************
 *
 *  William Paddock
 *  CS210 Lab4
@@ -14,28 +14,16 @@ using namespace std;
 
 class ItemToPurchase {
 	public:
-		void SetName(sting name){
-			this -> itemName = name
-		}
-		string getName(){
-			return this -> itemName;
-		}
-		void SetPrice(int price){
-			this -> itemPrice = price;
-		}
-		int GetPrice(){
-			return this -> itemPrice;
-		}
-		void SetQuantity(int quantity){
-			this -> itemQuantity = quantity;
-		}
-		int GetQuantity(){
-			return this -> itemQuantity;
-		}
+		void SetName(sting name);
+		string getName();
+		void SetPrice(int price);
+		int GetPrice();
+		void SetQuantity(int quantity);
+		int GetQuantity();
 	private:
 		string itemName;
 		double itemPrice;
-		int itemQuantity
-}
+		int itemQuantity;
+};
 
 #endif

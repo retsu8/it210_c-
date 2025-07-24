@@ -20,9 +20,9 @@ int partition(vector<int> &vec, int low, int high) {
 
     for (int j = low; j <= high - 1; j++) {
 
-        // If current element is smaller than or
+        // If current element is larger than or
         // equal to pivot
-        if (vec[j] <= pivot) {
+        if (vec[j] >= pivot) {
             i++;
             swap(vec[i], vec[j]);
         }
@@ -53,28 +53,23 @@ void quickSort(vector<int> &vec, int low, int high) {
 }
 
 void SortVector(vector<int>& myVec){
-   quickSort(myVec, 0,  myVec.size());
+   quickSort(myVec, 0,  myVec.size() - 1);
 }
 
 int main() {
-   
-   // Vector int setup variable
-   vector<int> myVec;
-   
    // Input handle here
    int input;
-   int feed;
    int i;
    
    // Grab first input of string length
    cin >> input;
 
+   // Vector int setup variable
+   vector<int> myVec(input);
+
    // Setting up while loop to get input
    for (i = 0; i < input; i++){
-      cin >> feed;
-     myVec.push_back(feed);
-   }
-   while (cin >> input){
+     cin >> myVec[i];
    }
    
    // Sortvector here
@@ -84,6 +79,8 @@ int main() {
    for (i = 0; i < myVec.size(); i++){
       cout << myVec.at(i) << ",";
    }
+
+   cout << endl;
    
    return 0;
 }

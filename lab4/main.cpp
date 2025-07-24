@@ -1,4 +1,4 @@
-/ ********************
+/********************
 *
 *  William Paddock
 *  CS210 Lab4
@@ -18,13 +18,13 @@ int main() {
       int qtn;
       int price;
       ItemToPurchase item = ItemToPurchase();
-      cout << "Enter the item name:"
+      cout << "Enter the item name:";
       cin >> item;
       name.SetName(item);
-      cout << "Enter the item price:"
+      cout << "Enter the item price:";
       cin >> price;
       name.SetPrice(price);
-      cout << "Enter the item quantity:"
+      cout << "Enter the item quantity:";
       cin >> qtn;
       name.SetQuantity(qtn);
    }

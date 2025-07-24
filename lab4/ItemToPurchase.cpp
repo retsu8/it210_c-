@@ -1,4 +1,4 @@
-/ ********************
+/********************
 *
 *  William Paddock
 *  CS210 Lab4
@@ -36,4 +36,4 @@ class ItemToPurchase {
 		string itemName;
 		double itemPrice;
 		int itemQuantity
-}
+};
