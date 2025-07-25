@@ -14,7 +14,7 @@ using namespace std;
 
 class ItemToPurchase {
 	public:
-		void SetName(sting name){
+		void SetName(string name){
 			this -> itemName = name
 		}
 		string getName(){
