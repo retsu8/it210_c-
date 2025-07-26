@@ -12,18 +12,19 @@
 #include <string>
 using namespace std;
 
+// Reference ItemToPurchase headers
 class ItemToPurchase {
+   private:
+		string itemName = "NoName";
+		int itemPrice = 0;
+		int itemQuantity = 0;
 	public:
-		void SetName(std::string name);
-		string getName();
+		void SetName(string name);
+		string GetName();
 		void SetPrice(int price);
 		int GetPrice();
 		void SetQuantity(int quantity);
 		int GetQuantity();
-	private:
-		string itemName;
-		double itemPrice;
-		int itemQuantity;
 };
 
 #endif
