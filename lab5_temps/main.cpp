@@ -49,8 +49,8 @@ class CityTemp{
 		int tempeture = 0;
 };
 
-void PullTempetureFile(vector<CityTemp>& temps){
-	ifstream f("FahrenheitTemperature.txt");
+void PullTempetureFile(vector<CityTemp>& temps, string text_file){
+	ifstream f(text_file);
 	// Check if the file is 
 	// successfully opened
 	if (!f.is_open()) {
@@ -81,11 +81,9 @@ void PullTempetureFile(vector<CityTemp>& temps){
 
 		// Add temps with city to vector
 		temps.push_back(city);
-		//cout << city.GetName() << " " << city.FahrenheitToCelsius() << endl;
 	}
 	// Close the file
 	f.close();
-
 }
 
 void PrintTempetureFile(vector<CityTemp>& temps){
@@ -98,8 +96,10 @@ void PrintTempetureFile(vector<CityTemp>& temps){
 int main(){
 	// Setup basic vector
 	vector<CityTemp> temps;
+
 	// Pulling the the file and reading
-	PullTempetureFile(temps);
+	string file_name = "FahrenheitTemperature.txt";
+	PullTempetureFile(temps, file_name);
 
 	 for (int i; i < temps.size(); i++){
 	  	cout << temps.at(i).GetName() << " " << temps.at(i).FahrenheitToCelsius() << endl;
