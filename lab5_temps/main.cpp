@@ -56,7 +56,7 @@ int main(){
 	// it in string s and print it to the
 	// standard output stream 
 	string s = "";
-	while (getline(f, (string)s)){
+	while (getline(f, s)){
 		string token  = s.find(" ", 0);
 		string city_name =  s.substr(0, token);
 		int temp = s.substr(token, s.size());
