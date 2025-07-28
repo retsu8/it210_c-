@@ -21,7 +21,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class CityTemps{
+class CityTemp{
 	public: 
 		void SetTemp(int temp){
 			tempeture = temp;
@@ -50,19 +50,21 @@ int main(){
 		cerr << "Error opening the file!";
 		return 1;
 	}
-	vector<CityTemps> temps;
+	vector<CityTemp> temps;
 
 	// Read each line of the file, store
 	// it in string s and print it to the
 	// standard output stream 
 	string s = "";
 	while (getline(f, s)){
-		string token  = s.find(" ", 0);
+		int token  = s.find(" ", 0);
 		string city_name =  s.substr(0, token);
-		int temp = s.substr(token, s.size());
-		CityTemp city;
+		string temp = s.substr(token, s.size() - token);
+		cout << city_name << endl;
+		cout << temp << endl;
+		/* CityTemp city;
 		city.SetName(city_name);
-		city.SetTemp(temp);
+		city.SetTemp(temp); */
 	}
 	// Close the file
 	f.close();
