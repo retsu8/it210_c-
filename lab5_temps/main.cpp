@@ -49,7 +49,7 @@ class CityTemp{
 		int tempeture = 0;
 };
 
-void PullTempetureFile(vector<CityTemp>& temps, string text_file){
+void PullTempetureFile(list<CityTemp>& temps, string text_file){
 	ifstream f(text_file);
 	// Check if the file is 
 	// successfully opened
@@ -79,33 +79,33 @@ void PullTempetureFile(vector<CityTemp>& temps, string text_file){
 		city.SetName(city_name);
 		city.SetTemp(temp);
 
-		// Add temps with city to vector
+		// Add temps with city to list
 		temps.push_back(city);
 	}
 	// Close the file
 	f.close();
 }
 
-void PrintTempetureFile(vector<CityTemp>& temps){
-	ofstream writeFile("CelsiusTemperature.txt");
-  	for (int i; i < temps.size(); i++){
-	  	cout << temps.at(i).GetName() << " " << temps.at(i).FahrenheitToCelsius() << endl;
+void PrintTempetureFile(list<CityTemp>& temps, file_name){
+	// Build of stream for new text
+	ofstream writeFile(file_name);
+	 for (CityTemp city: temps){
+	 	// Write the list to the file_name
+	  	writeFile << city.GetName() << " " << city.FahrenheitToCelsius() << endl;
   	}
   	writeFile.close();
 }
 int main(){
-	// Setup basic vector
-	vector<CityTemp> temps;
+	// Setup basic list
+	list<CityTemp> temps;
 
 	// Pulling the the file and reading
 	string file_name = "FahrenheitTemperature.txt";
 	PullTempetureFile(temps, file_name);
 
-	 for (int i; i < temps.size(); i++){
-	  	cout << temps.at(i).GetName() << " " << temps.at(i).FahrenheitToCelsius() << endl;
-  	}
 	// Writing the new file with celcius
-	PrintTempetureFile(temps);
+	file_name = "CelsiusTemperature.txt";
+	PrintTempetureFile(temps, file_name);
 
 	return 0;
 }
