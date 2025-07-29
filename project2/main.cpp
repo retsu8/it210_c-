@@ -17,7 +17,7 @@
  */
 #include <stdlib.h>
 #include <string>
-#include <investment>
+#include <investment.h>
 
 void PrintInput(int i_input){
 	// Note this is done in mono font for printing
