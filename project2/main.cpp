@@ -19,12 +19,30 @@
 #include <string>
 #include <investment>
 
-void PrintInput()
+void PrintInput(int i_input){
+	// Note this is done in mono font for printing
+	if (i_input == 0){
+		cout << "Initial Investment Amount:";}
+	if (i_input == 1){
+		cout << "Monthly Deposit:";}
+	if (i_input == 2){
+		cout << "Annual Interest:";}
+	if (i_input == 3){
+		cout << "Number of Years:";}
+	if (i_input == 4){
+		cout << "Press any key to continue…";}
+}
 
-int main(){
+void InvestmentHandle(){
+	// This is while loop handling to build the investiment item.
 	string input = "";
 	while (input != "quit"){
-		cout >> ""
+		Investment invest;
+		PrintInput(0)
+		cin >> initial_investment;
 	}
+}
+
+int main(){
 	return 0;
 }
