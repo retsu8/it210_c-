@@ -17,7 +17,9 @@
  */
 #include <stdlib.h>
 #include <string>
-#include <investment.h>
+#include <iostream>
+#include <InvestmentCalculator.h>
+using namespace std;
 
 void PrintInput(int i_input){
 	// Note this is done in mono font for printing
@@ -38,23 +40,31 @@ void InvestmentHandle(){
 	string input = "";
 	while (input != "quit"){
 		// This will run tell the user ennters quit
-		Investment invest;
-		PrintInput(0)
-		long double initial_interest = 0.00;
-		cin >> initial_investment;
-		PrintInput(1);
-		long double initial_monthly = 0.00;
-		cin >> initial_monthly;
-		PrintInput(2);
-		long double initial_interest = 0.00;
-		cin >> initial_interest;
-		PrintInput(3);
-		int set_years = 0;
-		cin >> set_years;
-		CalculateInvestment(set_years,)
+		try {
+				InvestmentCalculator invest = InvestmentCalculator();
+				PrintInput(0);
+				cin >> input;
+				invest.SetInitialInvestment(stod(input));
+				PrintInput(1);
+				cin >> input;
+				invest.SetMonthlyDeposit(stod(input));
+				PrintInput(2);
+				cin >> input;
+				invest.SetAnnualInterest(stod(input));
+				PrintInput(3);
+				cin >> input;
+				invest.SetNumberYears(stoi(input));
+
+				// Calculate the interest for the application
+				invest.CalculateInvestment(invest.GetNumberYears(), invest.GetInitialInvestment(), invest.GetAnnualInterest(), invest.GetMonthlyDeposit());
+				invest.PrintBalanceLine();
+			} catch (const std::exception& ex){
+				cout << "Invalid Input Retry";
+			}
 	}
 }
 
 int main(){
+	InvestmentHandle();
 	return 0;
 }
