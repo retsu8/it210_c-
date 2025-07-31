@@ -30,16 +30,28 @@ void PrintInput(int i_input){
 	if (i_input == 3){
 		cout << "Number of Years:";}
 	if (i_input == 4){
-		cout << "Press any key to continue…";}
+		cout << "Press any key to continue… or type quit to exit";}
 }
 
 void InvestmentHandle(){
 	// This is while loop handling to build the investiment item.
 	string input = "";
 	while (input != "quit"){
+		// This will run tell the user ennters quit
 		Investment invest;
 		PrintInput(0)
+		long double initial_interest = 0.00;
 		cin >> initial_investment;
+		PrintInput(1);
+		long double initial_monthly = 0.00;
+		cin >> initial_monthly;
+		PrintInput(2);
+		long double initial_interest = 0.00;
+		cin >> initial_interest;
+		PrintInput(3);
+		int set_years = 0;
+		cin >> set_years;
+		CalculateInvestment(set_years,)
 	}
 }
 
