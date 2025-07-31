@@ -53,20 +53,25 @@ int InvestmentCalculator::GetNumberYears(){
 	// Get the number of years to invest
 	return numberYears;
 }
-long double InvestmentCalculator::CalculateInvestment(int count, long double l_initial, long double l_annual, long double l_monthly){
+
+long double InvestmentCalculator::CalculateTotal(){
+	return monthlyDeposit + initialInvestment;
+}
+void InvestmentCalculator::CalculateInvestment(int count, long double l_initial, long double l_annual){
 	// Assuming interest is in whole numbers+
 	// Calculate a new initial starter for the new year
-	long double new_initial = (l_initial + l_monthly) * ((l_annual/100) * 12);
-
-	// Add this year at count to list; pushing into front to count backwards
-	list<long double> yearly = {new_initial, l_monthly, l_annual};
+	long double total = l_initial + monthlyDeposit;
+	long double interest = total * ((annualInterest/100) / 12);
+	long double closing_balance = interest + total;
+	list<long double> yearly = {l_initial, monthlyDeposit, total,  interest + l_annual, closing_balance};
 	if (count > 0){
-		annual.push_front(yearly);
-		CalculateInvestment(count--, new_initial, l_annual, l_monthly);
-	} 
-	return 0;
+		annual.push_back(yearly);
+		CalculateInvestment(count - 1, closing_balance, interest + l_annual);
+	}
+	// Add this year at count to list; pushing into front to count backwards
 }
 void InvestmentCalculator::PrintBalanceLine(){
+	cout << fixed(2) << percision();
 	cout << "Year : Year End Balance : Year End Earned Interest" << endl;
 	// Calculate the number of years.
 	int count = 1;

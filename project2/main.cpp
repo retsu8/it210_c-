@@ -56,7 +56,7 @@ void InvestmentHandle(){
 				invest.SetNumberYears(stoi(input));
 
 				// Calculate the interest for the application
-				invest.CalculateInvestment(invest.GetNumberYears(), invest.GetInitialInvestment(), invest.GetAnnualInterest(), invest.GetMonthlyDeposit());
+				invest.CalculateInvestment(invest.GetNumberYears(), invest.GetInitialInvestment(), invest.GetAnnualInterest());
 				invest.PrintBalanceLine();
 			} catch (const std::exception& ex){
 				cout << "Invalid Input Retry";

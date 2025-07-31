@@ -31,8 +31,9 @@ class InvestmentCalculator {
 		long double GetAnnualInterest();
 		void SetNumberYears(int i_years);
 		int GetNumberYears();
-		long double CalculateInvestment(int count, long double l_initial, long double l_annual, long double l_monthly);
+		void CalculateInvestment(int count, long double l_initial, long double l_annual);
 		void PrintBalanceLine();
+		long double CalculateTotal();
 	private:
 		long double initialInvestment = 0.0;
 		long double monthlyDeposit = 0.0;
