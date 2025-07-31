@@ -33,7 +33,6 @@ class InvestmentCalculator {
 		int GetNumberYears();
 		void CalculateInvestment(int count, long double l_initial, long double l_annual);
 		void PrintBalanceLine();
-		long double CalculateTotal();
 	private:
 		long double initialInvestment = 0.0;
 		long double monthlyDeposit = 0.0;
