@@ -55,12 +55,26 @@ void InvestmentHandle(){
 				cin >> input;
 				invest.SetNumberYears(stoi(input));
 
-				// Calculate the interest for the application
-				invest.CalculateInvestment(invest.GetNumberYears(), invest.GetInitialInvestment(), invest.GetAnnualInterest());
+				// Calculate the interest for the application with monthly
+				invest.CalculateInvestment(invest.GetNumberMonths(), invest.GetInitialInvestment(), invest.GetAnnualInterest());
+
+				// Print the balance
+				invest.PrintBanner(1);
+				invest.PrintBalanceLine();
+
+				// Calculate without a monthly deposit
+				invest.SetMonthlyDeposit(0);
+				invest.ClearCalculator();
+				invest.CalculateInvestment(invest.GetNumberMonths(), invest.GetInitialInvestment(), invest.GetAnnualInterest());
+
+				// Print the balance
+				invest.PrintBanner(0);
 				invest.PrintBalanceLine();
 			} catch (const std::exception& ex){
 				cout << "Invalid Input Retry";
 			}
+			PrintInput(4);
+			cin >> input;
 	}
 }
 
