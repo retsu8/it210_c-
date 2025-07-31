@@ -19,6 +19,7 @@
 #include <stdlib.h>
 #include <list>
 #include <InvestmentCalculator.h>
+#include <iomanip>
 using namespace std;
 
 void InvestmentCalculator::SetInitialInvestment(long double l_initial) {
@@ -71,7 +72,7 @@ void InvestmentCalculator::CalculateInvestment(int count, long double l_initial,
 	// Add this year at count to list; pushing into front to count backwards
 }
 void InvestmentCalculator::PrintBalanceLine(){
-	cout << fixed() << setprecision(2);
+	cout << fixed << setprecision(2);
 	cout << "Year : Year End Balance : Year End Earned Interest" << endl;
 	// Calculate the number of years.
 	int count = 1;
