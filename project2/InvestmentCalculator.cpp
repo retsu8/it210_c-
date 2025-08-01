@@ -42,23 +42,58 @@ void InvestmentCalculator::Menu(std::string s_input){
 	PrintInput(3);
 	cin >> s_input;
 	SetNumberYears(stoi(s_input));
-	PrintInput(5);
-	cin >> s_input;
-	if (tolower(s_input) == 'n' || tolower(s_input) == "no"){
-		cin >> stoi(s_input);
-		if(s_input > 0 && s_input < 5){
-			PrintInput(s_input - 1);
-			UpdateValue(s_input)
+	while( !(ToLower(s_input) == "y" || ToLower(s_input) == "yes") ){
+		PrintInput(5);
+		cin >> s_input;
+		if (ToLower(s_input) == "n" || ToLower(s_input) == "no"){
+			PrintInput(6);
+			int choice;
+			cin >> choice;
+			switch(choice) {
+				case 0:
+				case 1:
+				case 2:
+				case 3:
+					PrintInput(choice - 1);
+					UpdateValue(choice - 1);
+					break;
+				case 4:
+					PrintInput(choice - 1);
+					SetNumberYears(choice - 1);
+					break;
+			}
+			MenuInput();
 		}
 	}
-
 }
 
-void InvestmentCalculator::UpdateValue(int i_choice, auto value){
+std::string InvestmentCalculator::ToLower(string s_str){
+	// Lowercase the whole string
+    for (char &c : s_str) {
+        c = std::tolower(static_cast<unsigned char>(c));
+    }
+    return s_str;
+}
+
+int InvestmentCalculator::UpdateValue(int i_choice){
+	// Update the value in question
+	long double value;
+	cin >> value;
 	switch(i_choice){
 		case 0:
-			SetNumberYears(stoi(s_input));
-
+			SetInitialInvestment(value);
+			return 0;
+		case 1:
+			SetMonthlyDeposit(value);
+			return 0;
+		case 2:
+			SetAnnualInterest(value);
+			return 0;
+		case 3:
+			SetNumberYears(value);
+			return 0;
+		default:
+			return 0;
 	}
 }
 

@@ -41,6 +41,8 @@ class InvestmentCalculator {
 		void Menu(std::string s_input);
 		void PrintInput(int i_input);
 		void MenuInput();
+		std::string ToLower(std::string s_str);
+		int UpdateValue(int i_choice);
 	private:
 		long double initialInvestment = 0.0;
 		long double monthlyDeposit = 0.0;
