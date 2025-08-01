@@ -23,6 +23,7 @@
 #include <string>
 
 class InvestmentCalculator {
+	// Investment H file for cpp file structure
 	public:
 		void SetInitialInvestment(long double l_initial);
 		long double GetInitialInvestment();
@@ -37,11 +38,15 @@ class InvestmentCalculator {
 		void PrintBanner(int i_input);
 		void ClearCalculator();
 		std::string LeftPad(int i_size, std::string l_cell);
+		void Menu(std::string s_input);
+		void PrintInput(int i_input);
+		void MenuInput();
 	private:
 		long double initialInvestment = 0.0;
 		long double monthlyDeposit = 0.0;
 		long double annualInterest = 0.0;
 		int numberMonths = 0;
+		// List of lists to create a matrix of monthly deposits.
 		std::list<std::list<long double>> annual;
 };
 

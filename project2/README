@@ -1,0 +1,4 @@
+# Compilatioin
+g++ -std=c++20  main.cpp InvestmentCalculator.cpp -I. -o Investmentcalc
+
+# This is typed in mono font, thus may not work as expected

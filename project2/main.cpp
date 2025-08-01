@@ -18,22 +18,9 @@
 #include <stdlib.h>
 #include <string>
 #include <iostream>
+#include <format>
 #include <InvestmentCalculator.h>
 using namespace std;
-
-void PrintInput(int i_input){
-	// Note this is done in mono font for printing
-	if (i_input == 0){
-		cout << "Initial Investment Amount:";}
-	if (i_input == 1){
-		cout << "Monthly Deposit:";}
-	if (i_input == 2){
-		cout << "Annual Interest:";}
-	if (i_input == 3){
-		cout << "Number of Years:";}
-	if (i_input == 4){
-		cout << "Press any key to continue… or type quit to exit: " << endl;}
-}
 
 void InvestmentHandle(){
 	// This is while loop handling to build the investiment item.
@@ -42,18 +29,7 @@ void InvestmentHandle(){
 		// This will run tell the user ennters quit
 		try {
 				InvestmentCalculator invest = InvestmentCalculator();
-				PrintInput(0);
-				cin >> input;
-				invest.SetInitialInvestment(stod(input));
-				PrintInput(1);
-				cin >> input;
-				invest.SetMonthlyDeposit(stod(input));
-				PrintInput(2);
-				cin >> input;
-				invest.SetAnnualInterest(stod(input));
-				PrintInput(3);
-				cin >> input;
-				invest.SetNumberYears(stoi(input));
+				invest.Menu(input);
 
 				// Calculate the interest for the application with monthly
 				invest.CalculateInvestment(invest.GetNumberMonths(), invest.GetInitialInvestment(), invest.GetAnnualInterest());
@@ -70,15 +46,16 @@ void InvestmentHandle(){
 				// Print the balance
 				invest.PrintBanner(0);
 				invest.PrintBalanceLine();
+				invest.PrintInput(4);
+				cin >> input;
 			} catch (const std::exception& ex){
 				cout << "Invalid Input Retry";
 			}
-			PrintInput(4);
-			cin >> input;
 	}
 }
 
 int main(){
+	// main function to pass off to the handle
 	InvestmentHandle();
 	return 0;
 }
