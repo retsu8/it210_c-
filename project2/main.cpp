@@ -32,7 +32,7 @@ void PrintInput(int i_input){
 	if (i_input == 3){
 		cout << "Number of Years:";}
 	if (i_input == 4){
-		cout << "Press any key to continue… or type quit to exit";}
+		cout << "Press any key to continue… or type quit to exit: " << endl;}
 }
 
 void InvestmentHandle(){

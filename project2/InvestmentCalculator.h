@@ -20,6 +20,7 @@
 
 #include <iostream>
 #include <list>
+#include <string>
 
 class InvestmentCalculator {
 	public:
@@ -35,6 +36,7 @@ class InvestmentCalculator {
 		void PrintBalanceLine();
 		void PrintBanner(int i_input);
 		void ClearCalculator();
+		std::string LeftPad(int i_size, std::string l_cell);
 	private:
 		long double initialInvestment = 0.0;
 		long double monthlyDeposit = 0.0;

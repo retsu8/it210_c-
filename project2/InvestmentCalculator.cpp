@@ -16,10 +16,12 @@
  * =====================================================================================
  */
 
-#include <stdlib.h>
-#include <list>
-#include <InvestmentCalculator.h>
+#include <format>
 #include <iomanip>
+#include <list>
+#include <stdlib.h>
+#include <string>
+#include <InvestmentCalculator.h>
 using namespace std;
 
 void InvestmentCalculator::SetInitialInvestment(long double l_initial) {
@@ -83,20 +85,96 @@ void InvestmentCalculator::CalculateInvestment(int count, long double l_initial,
 	}
 	// Add this year at count to list; pushing into front to count backwards
 }
+
+std::string InvestmentCalculator::LeftPad(int i_size, std::string l_cell){
+	// Padd long double cells to the left
+	int row_size = i_size - (int)l_cell.size();
+	while(row_size > 0){
+		row_size -= 1;
+		l_cell = " " + l_cell;
+	}
+	return l_cell;
+}
+
 void InvestmentCalculator::PrintBalanceLine(){
-	cout << fixed << setprecision(2);
-	cout << "Year : Opening Balance : Deposited Amount : $Total : $ Interest : Closing Balance" << endl;
+	// Get the last element of the last row, the largest to cacluate size of column
+	
+	// List of headers to check
+	list<string> headers = {" Year "," Opening Balance "," Deposited Amount "," $Total "," $Interest "," Closing Balance "};
+
+	// Get the column headers and start at the begining.
+	auto h_front = headers.begin();
+
+	// Grab the last line of the list to make the column sizes
+	list<long double> last_line = annual.back();
+
+	// Get the first line of the list for year not month /12
+	last_line.push_front(annual.size() / 12);
+
+	// This is out column size table
+	list<int> column_size;
+
+	for (long double l : last_line){
+		// Get possible column sizing with largest columns
+		int l_col = format("{0:02Lf}", l).size();
+		int h_col = format("{0}", *h_front).size();
+		// measure the column size and use it.
+		column_size.push_back((l_col > h_col) ? l_col : h_col);
+		std::advance(h_front, 1);
+	}
+
+	// Print the column headers first
+	auto size = column_size.begin();
+	cout << " | ";
+	for(string col : headers){
+		string new_string = LeftPad(*size, col);
+		cout << new_string << " | ";
+		std::advance(size, 1);
+	}
+	cout << endl;
 	// Calculate the number of years.
 	int count = 1;
 	for(list<long double> a : annual){
 		// Make the print yearly instead
 		if (count % 12 == 0){
-				cout << " | " << count / 12 << " | ";
-		
-				// Pull the investment calculations out of the list
-				for(long double i : a){
-					cout << i << " | ";
-				} 
+			// These columns are printed in mono font, so it may  not print correctly to screen each time.
+				auto size = column_size.begin();
+
+				string new_string = LeftPad(*size, format("{0}", count/12));
+				cout << " | " << new_string << " | ";
+				
+				// Setting column width
+				auto l_front = a.begin();
+				std::advance(size, 1);
+
+				new_string = LeftPad(*size, format("{0:02Lf}", *l_front));
+				cout << new_string << " | ";
+
+
+				// Setting column width
+				std::advance(l_front, 1);
+				std::advance(size, 1);
+				new_string = LeftPad(*size, format("{0:02Lf}", *l_front));
+				cout << new_string << " | ";
+
+				// Setting column width
+				std::advance(l_front, 1);
+				std::advance(size, 1);
+				new_string = LeftPad(*size, format("{0:02Lf}", *l_front));
+				cout << new_string << " | ";
+
+				// Setting column width
+				std::advance(l_front, 1);
+				std::advance(size, 1);
+				new_string = LeftPad(*size, format("{0:02Lf}", *l_front));
+				cout << new_string << " | ";			
+
+				// Setting column width
+				std::advance(l_front, 1);
+				std::advance(size, 1);
+				new_string = LeftPad(*size, format("{0:02Lf}", *l_front));
+				cout << new_string << " | ";
+
 				// make sure to make a new line here
 				cout << endl;
 			}
