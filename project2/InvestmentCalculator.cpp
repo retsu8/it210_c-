@@ -216,6 +216,9 @@ std::string InvestmentCalculator::LeftPad(int i_size, std::string l_cell){
 
 void InvestmentCalculator::PrintBalanceLine(){
 	// Get the last element of the last row, the largest to cacluate size of column
+
+	// Force output percision to 2
+	std::cout.precision(2);
 	
 	// List of headers to check
 	list<string> headers = {" Year "," Opening Balance "," Deposited Amount "," $Total "," $Interest "," Closing Balance "};
@@ -268,32 +271,32 @@ void InvestmentCalculator::PrintBalanceLine(){
 			std::advance(size, 1);
 
 			// Setting column width
-			new_string = LeftPad(*size, format("$ {0:02Lf}", *l_front));
+			new_string = LeftPad(*size, format("$ {0:.2Lf}", *l_front));
 			cout << new_string << " | ";
 
 
 			// Setting column width
 			std::advance(l_front, 1);
 			std::advance(size, 1);
-			new_string = LeftPad(*size, format("$ {0:02Lf}", *l_front));
+			new_string = LeftPad(*size, format("$ {0:.2Lf}", *l_front));
 			cout << new_string << " | ";
 
 			// Setting column width
 			std::advance(l_front, 1);
 			std::advance(size, 1);
-			new_string = LeftPad(*size, format("$ {0:02Lf}", *l_front));
+			new_string = LeftPad(*size, format("$ {0:.2Lf}", *l_front));
 			cout << new_string << " | ";
 
 			// Setting column width
 			std::advance(l_front, 1);
 			std::advance(size, 1);
-			new_string = LeftPad(*size, format("$ {0:02Lf}", *l_front));
+			new_string = LeftPad(*size, format("$ {0:.2Lf}", *l_front));
 			cout << new_string << " | ";			
 
 			// Setting column width
 			std::advance(l_front, 1);
 			std::advance(size, 1);
-			new_string = LeftPad(*size, format("$ {0:02Lf}", *l_front));
+			new_string = LeftPad(*size, format("$ {0:.2Lf}", *l_front));
 			cout << new_string << " | ";
 
 			// make sure to make a new line here
