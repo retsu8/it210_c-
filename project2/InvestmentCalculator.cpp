@@ -43,9 +43,11 @@ void InvestmentCalculator::Menu(std::string s_input){
 	cin >> s_input;
 	SetNumberYears(stoi(s_input));
 	while( !(ToLower(s_input) == "y" || ToLower(s_input) == "yes") ){
+		// Get the new user input here
 		PrintInput(5);
 		cin >> s_input;
 		if (ToLower(s_input) == "n" || ToLower(s_input) == "no"){
+			// User input says they want to change a value
 			PrintInput(6);
 			int choice;
 			cin >> choice;
@@ -98,6 +100,7 @@ int InvestmentCalculator::UpdateValue(int i_choice){
 }
 
 void InvestmentCalculator::MenuInput(){
+	// Print the menu with filled in values
 	PrintInput(0);
 	cout << format("{0:02Lf}", GetInitialInvestment()) << endl;
 	PrintInput(1);
@@ -172,6 +175,7 @@ int InvestmentCalculator::GetNumberMonths(){
 }
 
 void InvestmentCalculator::ClearCalculator(){
+	// Clear the calculator at the end
 	annual.clear();
 }
 
