@@ -53,14 +53,14 @@ class ContactNode {
       }
       void InsertAfter(string contactName, string contactPhoneNumber){
          // Create a new noded
+         Node* current = head;
          Node *newNode = new Node(contactName, contactPhoneNumber);
-         if (head == NULL){
-            head = newNode;
-            return;
+         while(current -> nextNodePtr != nullptr){
+            current = current -> nextNodePtr;
          }
-         // Insert new node into the linked list
-         newNode -> nextNodePtr = this->head;
-         this -> head = newNode;
+
+         // Point to the last element and append it
+         current -> nextNodePtr = newNode;
       }
       void PrintContactNode(){
          Node *temp = head;
@@ -73,7 +73,7 @@ class ContactNode {
          int count = 1;
          while (temp != NULL) {
             cout << "Person " << count << ": " << temp -> GetName() << ", "<< temp -> GetPhoneNumber()  << endl;
-            temp = temp -> prevNodePtr;
+            temp = temp -> nextNodePtr;
             count = count + 1;
          }
 
