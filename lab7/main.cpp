@@ -2,25 +2,26 @@
 #include <string>
 using namespace std;
 
-class ContactNode {
+class Node {
    public:
-      ContactNode *nextNodePtr;
+      Node *nextNodePtr;
+      Node *prevNodePtr;
 
       // Default constructor
-      ContactNode() {
+      Node() {
          // Set the initial node data on nextNodePtr
-         contactName;
-         contactPhoneNumber;
          nextNodePtr = NULL;
+         prevNodePtr = NULL;
       }
 
       // Parameterised Constructor
-      ContactNode(string contactName, string contactPhoneNumber) {
+      Node(string contactName, string contactPhoneNumber) {
          // Puts data into node for use.
          this -> contactName = contactName;
          this -> contactPhoneNumber = contactPhoneNumber;
-         this->nextNodePtr = NULL;
+         this -> prevNodePtr = this->nextNodePtr = NULL;
       }
+
       string GetName(){
          return contactName;
       }
@@ -34,15 +35,25 @@ class ContactNode {
       string contactPhoneNumber;
 };
 
-class Linkedlist {
-   ContactNode *head;
+class ContactNode {
+   Node *head;
    public:
-      Linkedlist() {
-         head = NULL;
+      ContactNode(){
+         this -> head = NULL;
+      }
+      ContactNode(string contactName, string contactPhoneNumber){
+         Node *newNode = new Node(contactName, contactPhoneNumber);
+         this -> head = newNode;
+      }
+      string GetName(){
+         return head -> GetName();
+      }
+      string GetPhoneNumber(){
+         return head -> GetPhoneNumber();
       }
       void InsertAfter(string contactName, string contactPhoneNumber){
-         // Create a new node
-         ContactNode *newNode = new ContactNode(contactName, contactPhoneNumber);
+         // Create a new noded
+         Node *newNode = new Node(contactName, contactPhoneNumber);
          if (head == NULL){
             head = newNode;
             return;
@@ -52,36 +63,44 @@ class Linkedlist {
          this -> head = newNode;
       }
       void PrintContactNode(){
-         ContactNode *temp = head;
+         Node *temp = head;
+         
+         // Print the name of the list
          if (head == NULL){
             cout << "List empty" << endl;
          }
+         // Keep track of the contacts
+         int count = 1;
          while (temp != NULL) {
-            cout << "Name: " << temp -> GetName();
-            cout << "Phone number: " << temp -> GetPhoneNumber();
-            temp = temp -> nextNodePtr;
+            cout << "Person " << count << ": " << temp -> GetName() << ", "<< temp -> GetPhoneNumber()  << endl;
+            temp = temp -> prevNodePtr;
+            count = count + 1;
          }
+
+         // Tail response
+         cout << endl;
       }
-      void GetNext(ContactNode *temp) {
-         return temp -> nextNodePtr;
+      ContactNode* GetNext() {
+         head = head -> nextNodePtr;
       }
 };
 
 int main() {
    // Create new linked list;
-   Linkedlist list;
+   ContactNode list;
 
    //Get data for linked list
    int count = 0;
    while(count < 3) {
       string name;
-      cin >> name;
+      getline(cin, name);
       string phone;
-      cin >> phone;
+      getline(cin, phone);
       list.InsertAfter(name, phone);
-      count =+ 1;
+      count = count + 1;
    }
 
+   list.PrintContactNode();
 
    return 0;
 }
