@@ -15,17 +15,34 @@
  */
 
 #include <stdlib.h>
-#include <inventory.h>
+#include <fstream>
+#include <iostream>
+#include "inventory.h"
 
-Product::GetInventory(){
+int Inventory::GetInventory(){
 	return count;
 }
-Product::SetInventory(qty){
+void Inventory::SetInventory(qty){
 	this -> count = qty;
 }
-Product::GetName(){
+string Inventory::GetName(){
 	return name;
 }
-Product::SetName(std::string name){
+void Inventory::SetName(std::string name){
 	this -> name = name
+}
+
+int Inventory::FileInput(string file){
+	// Open the file input stream
+	ifstream inFS;
+	inFS.open(file);
+	if (!inFS.is_open()) {
+      cout << "File is missing?" << endl;
+      return 1; // 1 indicates error
+   }
+    while (!inFS.fail()) {
+    	cout << "checking file: " << fileNum << endl;
+      	inFS >> fileNum;
+   }
+   return 0
 }

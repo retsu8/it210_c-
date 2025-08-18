@@ -13,14 +13,15 @@
  *
  * =====================================================================================
  */
+#include "product.h"
 
-class Product{
+class Inventory{
 	public:
 		int GetInventory();
 		void SetInventory(int qty);
 		int GetName();
 		void SetName(std::string name);
+		int FileInput(string file);
 	private:
-		name="",
-		count=0
-}
+		Product* product;
+};

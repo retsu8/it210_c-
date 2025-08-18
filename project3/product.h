@@ -1,7 +1,7 @@
 /*
  * =====================================================================================
  *
- *       Filename:  product.cpp
+ *       Filename:  product.h
  *
  *    Description: Grocery Store product Handle 
  *
@@ -17,17 +17,17 @@
  */
 
 #include <stdlib.h>
-#include "product.h"
+#include <string>
 
-int Product::GetCount(){
-        return quantity;
-}
-string Product::GetName(qty){
-        return name;
-}
-void Product::SetName(string name){
-        this -> name = name;
-}
-void Product::SetCount(int qty){
-        this -> quantity = this -> quantity + qty;
-}
+using namespace std;
+
+class Product{
+        public:
+                int GetCount();
+                string GetName();
+                void SetCount(int qty);
+                void SetName(string name);
+        private:
+                string quantity = 0;
+                string name = "";
+};

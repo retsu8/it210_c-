@@ -16,17 +16,17 @@
  * =====================================================================================
  */
 #include <stdlib.h>
-#include <inventory.h>
+#include "inventory.h"
 
-int GrocerHandle(char file){
+int GroceryHandle(){
 	// Grovery store handler
 	Inventory inventory = Inventory();
-	inventory.FileInput(file);
+	inventory.FileInput("CS210_Project_Three_Input_File.txt");
 	return 1;
 }
 
 int main(int argc, char *argv[]){
 	// Main function for store handling
-	GroceryHandle(argv[1]);
+	GroceryHandle();
 	return 0;
 }
