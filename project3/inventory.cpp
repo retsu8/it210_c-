@@ -19,10 +19,15 @@
 #include <iostream>
 #include "inventory.h"
 
-int Inventory::GetInventory(){
-	return count;
+using namespace std;
+
+void Inventory::SetStoreName(string name){
+	this -> name = name;
 }
-void Inventory::SetInventory(qty){
+int Inventory::GetInventory(Product product){
+	return product -> quantity;
+}
+void Inventory::SetInventory(Product product){
 	this -> count = qty;
 }
 string Inventory::GetName(){
@@ -32,17 +37,21 @@ void Inventory::SetName(std::string name){
 	this -> name = name
 }
 
-int Inventory::FileInput(string file){
+int Inventory::FileInput(std::string inventory_file){
 	// Open the file input stream
-	ifstream inFS;
+	/*ifstream inFS;
 	inFS.open(file);
 	if (!inFS.is_open()) {
       cout << "File is missing?" << endl;
       return 1; // 1 indicates error
-   }
+   	}
+   	int count = 0
     while (!inFS.fail()) {
     	cout << "checking file: " << fileNum << endl;
       	inFS >> fileNum;
-   }
-   return 0
+		count += 1;
+    }
+	cout << "Row count: " << count << endl;
+   */
+   return 0;
 }

@@ -13,15 +13,28 @@
  *
  * =====================================================================================
  */
+#ifndef INVENTORY_H
+#define INVENTORY_H
+
+#include <iostream>
 #include "product.h"
+using namespace std;
 
 class Inventory{
 	public:
+		Inventory();
+		void SetStoreName(std::string name);
 		int GetInventory();
 		void SetInventory(int qty);
-		int GetName();
+		string GetName();
 		void SetName(std::string name);
-		int FileInput(string file);
+		int FileInput(std::string inventory_file);
 	private:
-		Product* product;
+		// Setting this to max inventory size
+		Product product[255];
+		string name = "";
+
 };
+
+
+#endif

@@ -17,8 +17,10 @@
  */
 
 #include <stdlib.h>
+#include <iostream>
 #include "product.h"
 
+using namespace std;
 int Product::GetCount(){
         return quantity;
 }

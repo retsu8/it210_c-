@@ -15,9 +15,11 @@
  *
  * =====================================================================================
  */
-
 #include <stdlib.h>
-#include <string>
+#include <iostream>
+
+#ifndef PRODUCT_H
+#define PRODUCT_H
 
 using namespace std;
 
@@ -28,6 +30,8 @@ class Product{
                 void SetCount(int qty);
                 void SetName(string name);
         private:
-                string quantity = 0;
+                int quantity = 0;
                 string name = "";
 };
+
+#endif

@@ -16,12 +16,15 @@
  * =====================================================================================
  */
 #include <stdlib.h>
+#include <iostream>
 #include "inventory.h"
 
+using namespace std;
 int GroceryHandle(){
 	// Grovery store handler
-	Inventory inventory = Inventory();
-	inventory.FileInput("CS210_Project_Three_Input_File.txt");
+	Inventory grocer;
+	grocer.SetStoreName("Corner Grocer");
+	grocer.FileInput("CS210_Project_Three_Input_File.txt");
 	return 1;
 }
 
