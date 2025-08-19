@@ -22,6 +22,7 @@
 using namespace std;
 
 #include "Inventory.h"
+
 Inventory::Inventory(){
 	map<string, int> product = {};
 	string name = "";

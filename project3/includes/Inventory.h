@@ -22,8 +22,6 @@
 
 using namespace std;
 
-#include "Inventory.cpp"
-
 class Inventory {
 	private:
 		// Setting this to max inventory size
@@ -31,11 +29,11 @@ class Inventory {
 		std::string name = "";
 	public:
 		Inventory();
-		Inventory(std::string name);
-		void SetStoreName(const string& name);
-		int GetInventory(string name);
-		void UpdateInventory(string name, int qty);
-		void InputFile(std::string inventory_file);
+		Inventory(std::string name) {};
+		void SetStoreName(const string& name) {};
+		int GetInventory(string name) {return 0;};
+		void UpdateInventory(string name, int qty) {};
+		void InputFile(std::string inventory_file) {};
 
 };
 
