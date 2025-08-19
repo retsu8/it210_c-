@@ -16,28 +16,39 @@
 
 #include <stdlib.h>
 #include <fstream>
-#include <iostream>
-#include "inventory.h"
+#include <string>
+#include <bits/stdc++.h>
 
 using namespace std;
 
-void Inventory::SetStoreName(string name){
-	this -> name = name;
-}
-int Inventory::GetInventory(Product product){
-	return product -> quantity;
-}
-void Inventory::SetInventory(Product product){
-	this -> count = qty;
-}
-string Inventory::GetName(){
-	return name;
-}
-void Inventory::SetName(std::string name){
-	this -> name = name
+#include "Inventory.h"
+Inventory::Inventory(){
+	map<string, int> product = {};
+	string name = "";
 }
 
-int Inventory::FileInput(std::string inventory_file){
+Inventory::Inventory(const string& name){
+	this -> name = name;
+}
+
+void Inventory::SetStoreName(const string& name){
+	this -> name = name;
+}
+int Inventory::GetInventory(string name){
+	return this -> product[name];
+}
+void Inventory::UpdateInventory(string name, int count){
+	map<string, int> local = this -> product;		
+	auto found = local.find(name);
+	if (found != local.end()){
+		found -> second += count;
+	} else {
+		local.insert({name, count});
+	}
+	this -> product = local;
+}
+
+void Inventory::InputFile(std::string inventory_file){
 	// Open the file input stream
 	/*ifstream inFS;
 	inFS.open(file);
@@ -53,5 +64,4 @@ int Inventory::FileInput(std::string inventory_file){
     }
 	cout << "Row count: " << count << endl;
    */
-   return 0;
 }

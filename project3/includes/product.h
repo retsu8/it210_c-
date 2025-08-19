@@ -27,7 +27,7 @@ class Product{
         public:
                 int GetCount();
                 string GetName();
-                void SetCount(int qty);
+                void SetCount(int count);
                 void SetName(string name);
         private:
                 int quantity = 0;

@@ -17,18 +17,21 @@
  */
 #include <stdlib.h>
 #include <iostream>
-#include "inventory.h"
+#include <string>
 
 using namespace std;
+#include "includes/Inventory.h"
+
 int GroceryHandle(){
 	// Grovery store handler
-	Inventory grocer;
-	grocer.SetStoreName("Corner Grocer");
-	grocer.FileInput("CS210_Project_Three_Input_File.txt");
-	return 1;
+	string store_name = "Corner Grocer";
+	Inventory* grocer;
+	grocer = new Inventory(store_name);
+	grocer -> InputFile("CS210_Project_Three_Input_File.txt");
+	return 0;
 }
 
-int main(int argc, char *argv[]){
+int main(){
 	// Main function for store handling
 	GroceryHandle();
 	return 0;

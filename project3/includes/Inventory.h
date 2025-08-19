@@ -6,7 +6,7 @@
  *        Version:  1.0
  *        Created:  08/05/2025 11:49:20 PM
  *       Revision:  1.0.0
- *       Compiler:  gcc
+ *       Compiler:  g++
  *
  *         Author:  William Paddock, 
  *   Organization:  Southern New Hampshire University CS 210 Project Three
@@ -17,24 +17,26 @@
 #define INVENTORY_H
 
 #include <iostream>
-#include "product.h"
+#include <string>
+#include <bits/stdc++.h>
+
 using namespace std;
 
-class Inventory{
-	public:
-		Inventory();
-		void SetStoreName(std::string name);
-		int GetInventory();
-		void SetInventory(int qty);
-		string GetName();
-		void SetName(std::string name);
-		int FileInput(std::string inventory_file);
+#include "Inventory.cpp"
+
+class Inventory {
 	private:
 		// Setting this to max inventory size
-		Product product[255];
-		string name = "";
+		map<string, int> product;
+		std::string name = "";
+	public:
+		Inventory();
+		Inventory(std::string name);
+		void SetStoreName(const string& name);
+		int GetInventory(string name);
+		void UpdateInventory(string name, int qty);
+		void InputFile(std::string inventory_file);
 
 };
-
 
 #endif
