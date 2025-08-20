@@ -29,11 +29,11 @@ class Inventory {
 		std::string name = "";
 	public:
 		Inventory();
-		Inventory(std::string name) {};
-		void SetStoreName(const string& name) {};
-		int GetInventory(string name) {return 0;};
+		Inventory(std::string name);
+		void SetStoreName(std::string name) {};
+		int GetInventory(string name);
 		void UpdateInventory(string name, int qty) {};
-		void InputFile(std::string inventory_file) {};
+		std::string InputFile(std::string inventory_file);
 
 };
 

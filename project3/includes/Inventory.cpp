@@ -21,18 +21,24 @@
 
 using namespace std;
 
-#include "Inventory.h"
+class Inventory {
+	private:
+		// Setting this to max inventory size
+		map<string, int> product;
+		std::string name = "";
+
+};
 
 Inventory::Inventory(){
 	map<string, int> product = {};
 	string name = "";
 }
 
-Inventory::Inventory(const string& name){
+Inventory::Inventory(std::string name){
 	this -> name = name;
 }
 
-void Inventory::SetStoreName(const string& name){
+void Inventory::SetStoreName(std::string name){
 	this -> name = name;
 }
 int Inventory::GetInventory(string name){
@@ -51,7 +57,7 @@ void Inventory::UpdateInventory(string name, int count){
 
 void Inventory::InputFile(std::string inventory_file){
 	// Open the file input stream
-	/*ifstream inFS;
+	ifstream inFS;
 	inFS.open(file);
 	if (!inFS.is_open()) {
       cout << "File is missing?" << endl;
@@ -64,5 +70,5 @@ void Inventory::InputFile(std::string inventory_file){
 		count += 1;
     }
 	cout << "Row count: " << count << endl;
-   */
+
 }
