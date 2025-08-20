@@ -61,10 +61,9 @@ int Inventory::GetInventory(string name){
 }
 void Inventory::UpdateInventory(string name){
 	map<string, int> local = this -> product;		
-	auto found = local.find(name);
-	if (found != local.end()){
+	try{
 		local[name] = local[name] + 1;
-	} else {
+	} catch (ExceptionType e) {
 		local.insert({name, 1});
 	}
 
