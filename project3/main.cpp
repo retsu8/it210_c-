@@ -63,7 +63,8 @@ void Inventory::UpdateInventory(string name){
 	map<string, int> local = this -> product;		
 	try{
 		local[name] = local[name] + 1;
-	} catch (ExceptionType e) {
+		cout << local[name];
+	} catch (int e) {
 		local.insert({name, 1});
 	}
 
