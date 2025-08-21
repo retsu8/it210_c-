@@ -143,6 +143,7 @@ int Inventory::InputFile(std::string inventory_file){
 }
 
 void Inventory::RemoveWhiteSpace(std::string& cleanMe){
+	// Clean the whitespace from the strings
 	cleanMe.erase(std::remove_if(cleanMe.begin(), cleanMe.end(),
         [](char c) {
             return (c == ' ' || c == '\n' || c == '\r' ||
@@ -194,7 +195,17 @@ int Inventory::GetInput(){
 }
 
 void Inventory::PrintFrequency(){
-	cout << "Implment me" << endl;
+	// Printing the histogram
+	map<string,int>::iterator it; 
+	for (it=this->product.begin();it!=this->product.end();++it) {
+		string capital = it->first;
+		capital[0] = toupper(capital[0]);
+	    cout << capital;
+	    for(i = 0: i< it->second; i++){
+	    	cout << "%";
+	    }
+	    cout << endl;
+	}
 }
 
 int GroceryHandle(){
