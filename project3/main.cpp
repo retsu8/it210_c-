@@ -36,6 +36,7 @@ class Inventory {
 		void PrintInventory();
 		void PrintFrequency();
 		void ToLower(std::string& lowerMe);
+		void RemoveWhiteSpace(std::string& cleanMe);
 	private:
 		// Setting this to max inventory size
 		map<string, int> product;
@@ -95,6 +96,7 @@ void Inventory::UpdateInventory(std::string name){
 	// refernce the product
 	map<string, int> local = this -> product;
 	ToLower(name);
+	RemoveWhiteSpace(name);
 	try{
 		// Update if exists
 		local[name] = local[name] + 1;
@@ -134,24 +136,48 @@ int Inventory::InputFile(std::string inventory_file){
     }
 	inFS.close();
 
+	//while()
+
 	return 0;
 
 }
 
+void Inventory::RemoveWhiteSpace(std::string& cleanMe){
+	cleanMe.erase(std::remove_if(cleanMe.begin(), cleanMe.end(),
+        [](char c) {
+            return (c == ' ' || c == '\n' || c == '\r' ||
+                    c == '\t' || c == '\v' || c == '\f');
+        }),
+        cleanMe.end());
+}
 void Inventory::SearchInput(){
+	// Clear out the buffer
+    std::cin.clear(); // clear error state
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
+
+	// Ask for input
 	cout << "What would you like to search?" << endl;
 	string query;
+
+	// Get the input
 	getline(cin, query);
 	ToLower(query);
+	RemoveWhiteSpace(name);
 	map<string, int> local = this -> product;
-	if (local.find(query) == local.end()) {
+
+	// Search the key
+    auto it = local.find(query);
+
+    // Checking if key present or not
+    if (it != local.end()){
+        cout << it->first << ": " << it->second << endl;
+    }else {
 		cout << "That item is not in the inventory" << endl;
-	} else {
-		cout << query << " " << local[query] << endl;
 	}
 }
 
 int Inventory::GetInput(){
+	// Get the users input for menu
 	int i = 0;
 	cin >> i;
 	while(!cin && (i < 0 || i >4)) // or if(cin.fail())
@@ -190,8 +216,12 @@ int GroceryHandle(){
 				break;
 			case 3:
 				grocer -> PrintFrequency();
+				break;
+			case 4:
+				return 0;
+			default:
+				cout << "Invalid input" << endl;
 			}
-
 	}
 	grocer -> PrintInventory();
 	return 0;
