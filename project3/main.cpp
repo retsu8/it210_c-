@@ -37,6 +37,8 @@ class Inventory {
 		void PrintFrequency();
 		void ToLower(std::string& lowerMe);
 		void RemoveWhiteSpace(std::string& cleanMe);
+		void InitializeInventory(std::string line);
+		void SaveFile();
 	private:
 		// Setting this to max inventory size
 		map<string, int> product;
@@ -108,6 +110,31 @@ void Inventory::UpdateInventory(std::string name){
 	this -> product = local;
 }
 
+void Inventory::InitializeInventory(std::string line){
+	// Get the space between the .dat file lines
+	auto pos = line.find(' ');
+
+	// Sprit the line appart using key
+	string key = line.substr(0, pos);
+
+	// Set the qty
+	int qty = strtol(line.substr(pos, line.size()));
+
+	// Remove whitespace
+	key = RemoveWhiteSpace(key);
+
+	// Save the key
+	this -> product[key] = qty;
+}
+
+void Inventory::SaveFile(){
+	std::ofstream saveFS (this -> name + ".dat");
+	map<string,int>::iterator it; 
+	for (it=this->product.begin();it!=this->product.end();++it) {
+		saveFS << it -> first << " " << it -> second << endl;
+	}
+	saveFS.close();
+}
 int Inventory::InputFile(std::string inventory_file){
 	// Open the file input stream
 	ifstream saveFS;
@@ -120,7 +147,7 @@ int Inventory::InputFile(std::string inventory_file){
 		string line;
 	   	while (getline(saveFS, line)) {
 	        // Process each line as needed
-	    	UpdateInventory(line);
+	    	InitializeInventory(line);
 	    }
 	}
 	ifstream inFS;
@@ -135,9 +162,6 @@ int Inventory::InputFile(std::string inventory_file){
     	UpdateInventory(line);
     }
 	inFS.close();
-
-	//while()
-
 	return 0;
 
 }
@@ -201,7 +225,7 @@ void Inventory::PrintFrequency(){
 		string capital = it->first;
 		capital[0] = toupper(capital[0]);
 	    cout << capital;
-	    for(i = 0: i< it->second; i++){
+	    for(int i = 0; i< it->second; i++){
 	    	cout << "%";
 	    }
 	    cout << endl;
